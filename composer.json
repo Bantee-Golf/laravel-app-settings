@@ -1,0 +1,38 @@
+{
+    "name": "emedia/app-settings",
+    "description": "Set application-wide settings in the database and retrieve them.",
+    "type": "package",
+    "repositories": [
+        {
+            "type":"vcs",
+            "url":"git@bitbucket.org:elegantmedia/laravel-helpers.git"
+        },
+        {
+            "type":"vcs",
+            "url":"git@bitbucket.org:elegantmedia/quickdata-laravel.git"
+        },
+        {
+            "type":"vcs",
+            "url":"git@bitbucket.org:elegantmedia/formation.git"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^5.4",
+        "illuminate/support": "^5.4",
+        "emedia/formation": "^0.0",
+        "emedia/helpers": "^1.0",
+        "emedia/quick-data-laravel": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "EMedia\\AppSettings\\": "src/"
+        }
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Shane Perera",
+            "email": "shane@shaneperera.com"
+        }
+    ]
+}
