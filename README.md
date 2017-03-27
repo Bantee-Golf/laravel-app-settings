@@ -24,10 +24,10 @@ composer require emedia/app-settings
 1. Update `config\app.php` and add these.
 ```
 \\ In the service providers
-	\EMedia\AppSettings\AppSettingsServiceProvider::class,
+	EMedia\AppSettings\AppSettingsServiceProvider::class,
 
 \\ For aliases
-	'Settings' => \EMedia\AppSettings\Facade::class,
+	'Settings' => EMedia\AppSettings\Facade::class,
 ```
 
 2. Setup the package

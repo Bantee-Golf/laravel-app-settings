@@ -5,7 +5,7 @@ namespace EMedia\AppSettings;
 
 
 use EMedia\AppSettings\Console\Commands\SetupSettings;
-use EMedia\Support\Console\Commands\ComposerAutoload;
+use EMedia\Helpers\Console\Commands\ComposerAutoload;
 use Illuminate\Support\ServiceProvider;
 
 class AppSettingsServiceProvider extends ServiceProvider
