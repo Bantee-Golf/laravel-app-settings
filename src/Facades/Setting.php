@@ -1,7 +1,7 @@
 <?php
-namespace EMedia\AppSettings;
+namespace EMedia\AppSettings\Facades;
 
-class Facade extends \Illuminate\Support\Facades\Facade
+class Setting extends \Illuminate\Support\Facades\Facade
 {
 
 	protected static function getFacadeAccessor()

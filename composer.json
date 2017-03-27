@@ -24,6 +24,9 @@
         "emedia/quick-data-laravel": "^1.0"
     },
     "autoload": {
+        "classmap": [
+            "src/functions.php"
+        ],
         "psr-4": {
             "EMedia\\AppSettings\\": "src/"
         }

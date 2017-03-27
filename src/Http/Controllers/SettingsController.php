@@ -24,7 +24,7 @@ class SettingsController extends Controller
 	{
 		$this->settingsRepo = $settingsRepo;
 
-		$this->middleware('auth.acl:permissions[edit-site-settings]');
+		// $this->middleware('auth.acl:permissions[edit-site-settings]');
 	}
 
 	public function index()

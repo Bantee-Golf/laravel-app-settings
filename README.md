@@ -27,7 +27,7 @@ composer require emedia/app-settings
 	EMedia\AppSettings\AppSettingsServiceProvider::class,
 
 \\ For aliases
-	'Settings' => EMedia\AppSettings\Facade::class,
+	'Setting' => EMedia\AppSettings\Facades\Setting::class,
 ```
 
 2. Setup the package
@@ -49,10 +49,10 @@ php artisan vendor:publish --tag=app-settings-views
 
 ```
 // Settings a setting
-{{ Settings::set('mySetting', '3445') }}
+{{ Setting::set('mySetting', '3445') }}
 
 // Retrieving a setting
-{{ Settings::get('mySetting') }}
+{{ Setting::get('mySetting') }}
 
 // View 'SettingsManager' class for other functions
 ```

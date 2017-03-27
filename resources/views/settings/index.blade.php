@@ -1,15 +1,13 @@
 @extends('oxygen::layouts.master-dashboard')
 
 @section('pageMainActions')
-    @include('oxygen::partials.searchField-section')
+    @include('oxygen::dashboard.partials.searchField')
 
     <a href="/settings/new" class="btn btn-success"><em class="fa fa-plus-circle"></em> Add New Setting</a>
-
-    {{ Settings::get('34563') }}
 @stop
 
 @section('content')
-    @include('oxygen::partials.table-allItems', [
+    @include('oxygen::dashboard.partials.table-allItems', [
         'tableHeader' => [
             'Key', 'Value', 'Data Type', 'Description', 'Actions'
         ]

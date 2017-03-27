@@ -24,13 +24,22 @@ class SettingsManager
 
 	public function set($key, $value, $dataType = null, $description = null)
 	{
-		echo 'set called with key ' . $key;
 		$data = [
 			'setting_key' => $key,
 			'setting_value' => $value,
 			'setting_data_type' => $dataType,
 			'description' => $description,
 		];
+
+		if ($dataType) {
+			if ($dataType === 'json') {
+				$data['setting_value'] = json_encode($value);
+			}
+
+			if (!in_array($dataType, $this->validDataTypes(), true)) {
+				throw new InvalidArgumentException("The data type `{$dataType}` is invalid");
+			}
+		}
 
 		return $this->setByArray($data);
 	}
@@ -62,15 +71,18 @@ class SettingsManager
 	 *
 	 * @return string
 	 */
-	public function get($key)
+	public function get($key, $default = '')
 	{
 		$setting = Setting::where('setting_key', $key)->first();
 
 		if ($setting) {
+			if (isset($setting->setting_data_type) && $setting->setting_data_type !== null) {
+				return $this->castToType($setting->setting_value, $setting->setting_data_type);
+			}
 			return $setting->setting_value;
 		}
 
-		return '';
+		return $default;
 	}
 
 	protected function validate($data, $isNewRecord = true)
@@ -92,6 +104,46 @@ class SettingsManager
 			$message = implode(' ', $validator->messages()->all());
 		    throw new InvalidArgumentException($message);
 		}
+	}
+
+	/**
+	 *
+	 * Explicit type casting
+	 *
+	 * @param $value
+	 * @param $type
+	 *
+	 * @return bool|float|int|mixed
+	 */
+	protected function castToType($value, $type)
+	{
+		switch ($type) {
+			case 'int':
+			case 'integer':
+				return (integer) $value;
+			case 'bool':
+			case 'boolean':
+				return (boolean) $value;
+			case 'float':
+			case 'double':
+			case 'real':
+				return (float) $value;
+			case 'json':
+				return json_decode($value, true);
+			default:
+				return $value;
+		}
+	}
+
+	private function validDataTypes()
+	{
+		return [
+			'int', 'integer',
+			'bool', 'boolean',
+			'float', 'double', 'real',
+			'string',
+			'json',
+		];
 	}
 
 }
