@@ -7,6 +7,7 @@ namespace EMedia\AppSettings\Http\Controllers;
 use App\Http\Controllers\Controller;
 use EMedia\AppSettings\Entities\Setting;
 use EMedia\AppSettings\Entities\SettingsRepository;
+use EMedia\AppSettings\Facades\Setting as SettingFacade;
 use EMedia\Formation\Builder\Formation;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
@@ -69,7 +70,7 @@ class SettingsController extends Controller
 	public function store(Request $request)
 	{
 		try {
-			\Settings::setByArray($request->only([
+			SettingFacade::setByArray($request->only([
 				'setting_key',
 				'setting_value',
 				'setting_data_type',
@@ -85,7 +86,7 @@ class SettingsController extends Controller
 	public function update(Request $request, $id)
 	{
 		try {
-			\Settings::update($id, $request->only([
+			SettingFacade::update($id, $request->only([
 				'setting_key',
 				'setting_value',
 				'setting_data_type',

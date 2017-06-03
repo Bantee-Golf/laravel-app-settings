@@ -49,10 +49,19 @@ php artisan vendor:publish --tag=app-settings-views
 
 ```
 // Settings a setting
+setting_set('mySetting', '3445');
+
+// or use the Facade
 {{ Setting::set('mySetting', '3445') }}
 
 // Retrieving a setting
+setting('mySetting', 'default');
+
+// or use the Facade
 {{ Setting::get('mySetting') }}
+
+// Updade a setting
+{{ Setting::update('mySetting', '3445') }}
 
 // View 'SettingsManager' class for other functions
 ```
