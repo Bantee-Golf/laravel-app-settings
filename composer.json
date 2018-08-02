@@ -17,8 +17,8 @@
         }
     ],
     "require": {
-        "illuminate/database": "^5.4",
-        "illuminate/support": "^5.4",
+        "illuminate/database": "^5",
+        "illuminate/support": "^5",
         "emedia/formation": "^0.0",
         "emedia/helpers": "^1.0",
         "emedia/quick-data-laravel": "^1.0"
