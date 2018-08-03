@@ -56,6 +56,33 @@ class SettingsManager
 		return $this->settingsRepo->update($setting, $data);
 	}
 
+	/**
+	 *
+	 * Set or update an existing setting
+	 *
+	 * @param      $key
+	 * @param      $value
+	 * @param null $dataType
+	 * @param null $description
+	 *
+	 * @return mixed
+	 */
+	public function setOrUpdate($key, $value, $dataType = null, $description = null)
+	{
+		/** @var Setting $existingSetting */
+		$existingSetting = $this->get($key);
+
+		if ($existingSetting) {
+			return $this->update($existingSetting->id, [
+				'setting_value' => $value,
+				'setting_data_type' => $dataType,
+				'description' => $description,
+			]);
+		}
+
+		return $this->set($key, $value, $dataType, $description);
+	}
+
 	public function setByArray($data)
 	{
 		$this->validate($data);

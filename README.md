@@ -63,5 +63,8 @@ setting('mySetting', 'default');
 // Updade a setting
 {{ Setting::update('mySetting', '3445') }}
 
+// Set or Update a Setting
+{{ Setting::setOrUpdate('mySetting', '3445') }}
+
 // View 'SettingsManager' class for other functions
 ```
