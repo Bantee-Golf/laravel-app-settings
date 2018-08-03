@@ -70,10 +70,11 @@ class SettingsManager
 	public function setOrUpdate($key, $value, $dataType = null, $description = null)
 	{
 		/** @var Setting $existingSetting */
-		$existingSetting = $this->get($key);
+		$existingSetting = Setting::where('setting_key', $key)->first();
 
 		if ($existingSetting) {
 			return $this->update($existingSetting->id, [
+				'setting_key' => $key,
 				'setting_value' => $value,
 				'setting_data_type' => $dataType,
 				'description' => $description,
