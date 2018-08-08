@@ -24,6 +24,7 @@ composer require emedia/app-settings
 1. Update `config\app.php` and add these.
 ```
 \\ In the service providers
+\\ If you want to override the default routes added by the package, add this service provider above `RouteServiceProvider::class`
 	EMedia\AppSettings\AppSettingsServiceProvider::class,
 
 \\ For aliases
