@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
 
+	const DATA_TYPE_JSON = 'json';
+
 	use GeneratesFields;
 	use SearchableTrait;
 

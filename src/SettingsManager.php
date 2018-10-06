@@ -32,7 +32,7 @@ class SettingsManager
 		];
 
 		if ($dataType) {
-			if ($dataType === 'json') {
+			if ($dataType === Setting::DATA_TYPE_JSON) {
 				$data['setting_value'] = json_encode($value);
 			}
 
@@ -156,7 +156,7 @@ class SettingsManager
 			case 'double':
 			case 'real':
 				return (float) $value;
-			case 'json':
+			case Setting::DATA_TYPE_JSON:
 				return json_decode($value, true);
 			default:
 				return $value;
@@ -170,7 +170,7 @@ class SettingsManager
 			'bool', 'boolean',
 			'float', 'double', 'real',
 			'string',
-			'json',
+			Setting::DATA_TYPE_JSON,
 		];
 	}
 

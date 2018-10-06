@@ -11,9 +11,9 @@
 
         <div class="container form-elegant-container">
             @if ($entity->id)
-                <form action="{{ route('settings.entity', ['id' => $entity->id]) }}" method="post" class="form-horizontal">
+                <form action="{{ route('manage.settings.update', ['id' => $entity->id]) }}" method="post" class="form-horizontal">
             @else
-                <form action="{{ route('settings') }}" method="post" class="form-horizontal">
+                <form action="{{ route('manage.settings.store') }}" method="post" class="form-horizontal">
             @endif
 
                 @if ($entity->id)
@@ -26,8 +26,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
-                        <a href="{{ url()->previous() }}" class="btn btn-default pull-right">Cancel</a>
-                        <button type="submit" class="btn btn-success text-right">Save</button>
+                        {{--<a href="{{ url()->previous() }}" class="btn btn-default pull-right">Cancel</a>--}}
+                        <button type="submit" class="btn btn-success text-right btn-wide btn-lg">Save</button>
                     </div>
                 </div>
             </form>

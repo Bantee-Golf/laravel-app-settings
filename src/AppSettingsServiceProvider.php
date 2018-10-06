@@ -4,7 +4,7 @@
 namespace EMedia\AppSettings;
 
 
-use EMedia\AppSettings\Console\Commands\SetupSettings;
+use EMedia\AppSettings\Console\Commands\AppSettingsPackageSetupCommand;
 use EMedia\Helpers\Console\Commands\ComposerAutoload;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,7 +19,7 @@ class AppSettingsServiceProvider extends ServiceProvider
 			__DIR__ . '/../resources/views' => base_path('resources/views/vendor/app-settings'),
 		], 'app-settings-views');
 
-		include(__DIR__ . '/../routes/web.php');
+		// include(__DIR__ . '/../routes/web.php');
 	}
 
 	/**
@@ -31,7 +31,7 @@ class AppSettingsServiceProvider extends ServiceProvider
 	{
 		if (!app()->environment('production')) {
 			$this->commands(ComposerAutoload::class);
-			$this->commands(SetupSettings::class);
+			$this->commands(AppSettingsPackageSetupCommand::class);
 		}
 
 		$this->app->singleton('EMedia\AppSettings\SettingsManager', SettingsManager::class);
