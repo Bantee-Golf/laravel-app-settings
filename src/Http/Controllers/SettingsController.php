@@ -80,7 +80,7 @@ class SettingsController extends Controller
 			return back()->with('error', $ex->getMessage());
 		}
 
-		return redirect()->route('settings')->with('success', 'Setting saved.');
+		return redirect()->route('manage.settings.index')->with('success', 'Setting saved.');
 	}
 
 	public function update(Request $request, $id)
@@ -96,7 +96,7 @@ class SettingsController extends Controller
 			return back()->with('error', $ex->getMessage());
 		}
 
-		return redirect()->route('settings')->with('success', 'Setting saved.');
+		return redirect()->route('manage.settings.index')->with('success', 'Setting saved.');
 	}
 
 	public function destroy($id)

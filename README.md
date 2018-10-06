@@ -1,6 +1,6 @@
 # Laravel Settings
 
-Save app settings to database and retrieve them. Supports Laravel 5.4
+Save app settings to database and retrieve them. Supports Laravel 5.7
 
 ### Installation Instructions
 
@@ -21,27 +21,17 @@ composer require emedia/app-settings
 
 ## Configuration
 
-1. Update `config\app.php` and add these.
+Setup the package
 ```
-\\ In the service providers
-\\ If you want to override the default routes added by the package, add this service provider above `RouteServiceProvider::class`
-	EMedia\AppSettings\AppSettingsServiceProvider::class,
-
-\\ For aliases
-	'Setting' => EMedia\AppSettings\Facades\Setting::class,
+php artisan setup:package:app-settings
 ```
 
-2. Setup the package
-```
-php artisan emedia:setup.app-settings-package
-```
-
-3. Run the migrations
+Run the migrations
 ```
 php artisan migrate
 ```
 
-4. (Optional) If you need custom views, publish the views
+(Optional) If you need custom views, publish the views
 ```
 php artisan vendor:publish --tag=app-settings-views
 ```
@@ -60,12 +50,28 @@ setting('mySetting', 'default');
 
 // or use the Facade
 {{ Setting::get('mySetting') }}
+{{ Setting::get('mySetting', $default) }}
 
 // Updade a setting
 {{ Setting::update('mySetting', '3445') }}
 
 // Set or Update a Setting
 {{ Setting::setOrUpdate('mySetting', '3445') }}
+```
 
-// View 'SettingsManager' class for other functions
+### More Info
+
+See the `SettingsManager` class to see how it works.
+
+
+### Troubleshooting
+
+The package should get auto-discovered with Laravel 5.7+. If not, add these to `config\app.php`.
+
+```
+\\ In the service providers
+EMedia\AppSettings\AppSettingsServiceProvider::class,
+
+\\ For aliases
+'Setting' => EMedia\AppSettings\Facades\Setting::class,
 ```
