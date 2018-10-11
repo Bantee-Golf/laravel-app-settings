@@ -5,6 +5,8 @@ namespace EMedia\AppSettings;
 
 
 use EMedia\AppSettings\Console\Commands\AppSettingsPackageSetupCommand;
+use EMedia\Helpers\Components\Menu\MenuBar;
+use EMedia\Helpers\Components\Menu\MenuItem;
 use EMedia\Helpers\Console\Commands\ComposerAutoload;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,7 +21,12 @@ class AppSettingsServiceProvider extends ServiceProvider
 			__DIR__ . '/../resources/views' => base_path('resources/views/vendor/app-settings'),
 		], 'app-settings-views');
 
-		// include(__DIR__ . '/../routes/web.php');
+		// register the menu items
+		$menuItem = (new MenuItem())->setText('Settings')
+									->setResource('manage.settings.index')
+									->setClass('fas fa-cogs');
+
+		MenuBar::add($menuItem, 'sidebar.manage');
 	}
 
 	/**
