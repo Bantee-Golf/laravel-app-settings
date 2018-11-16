@@ -1,5 +1,5 @@
 // Start AppSettings Routes
-Route::group(['prefix' => '/manage/settings', 'middleware' => ['web', 'auth'], 'as' => 'manage.'], function()
+Route::group(['prefix' => '/manage/settings', 'middleware' => ['auth', 'auth.acl:roles[super-admin|admin]'], 'as' => 'manage.'], function()
 {
 	Route::get('/', '\EMedia\AppSettings\Http\Controllers\SettingsController@index')->name('settings.index');
 	Route::get('/new', '\EMedia\AppSettings\Http\Controllers\SettingsController@create')->name('settings.create');
