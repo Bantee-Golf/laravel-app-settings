@@ -22,13 +22,11 @@ class AppSettingsServiceProvider extends ServiceProvider
 		], 'app-settings-views');
 
 		// register the menu items
-		if (\Illuminate\Support\Facades\Route::has('manage.settings.index')) {
-			$menuItem = (new MenuItem())->setText('Settings')
-										->setResource('manage.settings.index')
-										->setClass('fas fa-cogs');
+		$menuItem = (new MenuItem())->setText('Settings')
+									->setResource('manage.settings.index')
+									->setClass('fas fa-cogs');
 
-			MenuBar::add($menuItem, 'sidebar.manage');
-		}
+		MenuBar::add($menuItem, 'sidebar.manage');
 	}
 
 	/**
