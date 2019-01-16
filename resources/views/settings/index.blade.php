@@ -16,18 +16,29 @@
     @foreach ($allItems as $item)
         <tr>
             <td>
-                <a href="{{ route('manage.settings.edit', ['id' => $item->id]) }}">{{ $item->setting_key }}</a>
+                @if ($item->is_value_editable)
+                    <a href="{{ route('manage.settings.edit', ['id' => $item->id]) }}">{{ $item->setting_key }}</a>
+                @else
+                    {{ $item->setting_key }}
+                @endif
             </td>
             <td>{{ $item->setting_value }}</td>
             <td>{{ $item->setting_data_type }}</td>
             <td>{{ $item->description }}</td>
             <td>
-                <a href="{{ route('manage.settings.edit', ['id' => $item->id]) }}" class="btn btn-success"><em class="fa fa-edit"></em> Edit</a>
-                <form action="{{ route('manage.settings.destroy', ['id' => $item->id]) }}" method="POST" class="form form-inline">
-                	{{ method_field('delete') }}
-                	{{ csrf_field() }}
-                	<button class="btn btn-danger js-confirm"><em class="fa fa-times"></em> Delete</button>
-                </form>
+                @if ($item->is_value_editable)
+                    <a href="{{ route('manage.settings.edit', ['id' => $item->id]) }}" class="btn btn-success"><em class="fa fa-edit"></em> Edit</a>
+                    @if ($item->is_key_editable)
+                        <form action="{{ route('manage.settings.destroy', ['id' => $item->id]) }}" method="POST" class="form form-inline">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                            <button class="btn btn-danger js-confirm"><em class="fa fa-times"></em> Delete</button>
+                        </form>
+                    @endif
+                @else
+                    <span class="badge badge-warning">LOCKED</span>
+                @endif
+
             </td>
         </tr>
     @endforeach

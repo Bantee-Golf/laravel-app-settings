@@ -53,6 +53,17 @@ class SettingsManager
 			throw new InvalidArgumentException("Invalid setting ID");
 		}
 
+		// if the key is not editable, ignore it
+		if (!$setting->is_key_editable) {
+			if (isset($data['setting_key'])) unset($data['setting_key']);
+		}
+
+		// if value is not editable, ignore both key and value
+		if (!$setting->is_value_editable) {
+			if (isset($data['setting_key'])) unset($data['setting_key']);
+			if (isset($data['setting_value'])) unset($data['setting_value']);
+		}
+
 		return $this->settingsRepo->update($setting, $data);
 	}
 
@@ -130,7 +141,7 @@ class SettingsManager
 		if ($validator->fails())
 		{
 			$message = implode(' ', $validator->messages()->all());
-		    throw new InvalidArgumentException($message);
+			throw new InvalidArgumentException($message);
 		}
 	}
 

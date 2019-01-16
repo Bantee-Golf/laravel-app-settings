@@ -20,13 +20,20 @@ class SettingsTableSeeder extends Seeder
 		$data = [
 			/*
 			[
-				'setting_key' 		=> 'resultsPerCrawl',
+				'setting_key' 		=> 'setting_1',
 				'setting_value' 	=> 10
 			],
 			[
-				'setting_key' 		=> 'proxiesActive',
+				'setting_key' 		=> 'setting_2_non_editable_key',
 				'setting_value' 	=> 'false',
-				'setting_data_type' => 'boolean'
+				'setting_data_type' => 'boolean',
+				'is_key_editable'	=> false,
+			],
+			[
+				'setting_key' 		=> 'setting_3_non_editable_value',
+				'setting_value' 	=> 'false',
+				'setting_data_type' => 'boolean',
+				'is_value_editable' => false,
 			],
 			*/
 		];

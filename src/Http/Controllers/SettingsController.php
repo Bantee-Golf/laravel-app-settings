@@ -101,6 +101,12 @@ class SettingsController extends Controller
 
 	public function destroy($id)
 	{
+		$setting = $this->settingsRepo->find($id);
+
+		if (!$setting->is_key_editable) {
+			return back()->with('error', 'This key cannot be deleted.');
+		}
+
 		$this->settingsRepo->delete($id);
 
 		return back()->with('success', 'Setting removed.');

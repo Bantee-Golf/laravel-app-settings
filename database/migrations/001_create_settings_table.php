@@ -18,6 +18,8 @@ class CreateSettingsTable extends Migration
 			$table->string('setting_data_type')->nullable();
 			$table->text('setting_value', 65535)->nullable();
 			$table->string('description')->nullable();
+			$table->boolean('is_key_editable')->default(true);
+			$table->boolean('is_value_editable')->default(true);
 			$table->timestamps();
         });	
     }
