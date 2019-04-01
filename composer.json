@@ -23,7 +23,7 @@
     "require": {
         "illuminate/database": "^5.7",
         "illuminate/support": "^5.7",
-        "emedia/formation": "~0.0",
+        "emedia/formation": "~0.1",
         "emedia/quick-data-laravel": "~2.0"
     },
     "extra": {
