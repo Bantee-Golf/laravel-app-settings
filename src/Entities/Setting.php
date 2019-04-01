@@ -12,6 +12,9 @@ class Setting extends Model
 {
 
 	const DATA_TYPE_JSON = 'json';
+	const DATA_TYPE_TEXT = 'text';
+	const DATA_TYPE_STRING = 'string';
+	const DATA_TYPE_BOOLEAN = 'bool';
 
 	use GeneratesFields;
 	use SearchableTrait;
@@ -44,6 +47,12 @@ class Setting extends Model
 		[
 			'name' => 'setting_data_type',
 			'display_name' => 'Data Type',
+			'type' => 'select',
+			'options' => [
+				self::DATA_TYPE_STRING => 'String',
+				self::DATA_TYPE_TEXT => 'Text',
+				self::DATA_TYPE_BOOLEAN => 'True/False',
+			]
 		],
 	];
 

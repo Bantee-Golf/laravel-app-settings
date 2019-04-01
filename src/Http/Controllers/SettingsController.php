@@ -59,7 +59,7 @@ class SettingsController extends Controller
 		}
 
 		$data = [
-			'pageTitle' => 'Add New Setting',
+			'pageTitle' => 'Edit Setting',
 			'entity' => $setting,
 			'form' => new Formation($setting),
 		];

@@ -22,8 +22,8 @@
                     {{ $item->setting_key }}
                 @endif
             </td>
-            <td>{{ $item->setting_value }}</td>
-            <td>{{ $item->setting_data_type }}</td>
+            <td>{{ substr($item->setting_value, 0, 100) }}</td>
+            <td>{{ strtoupper($item->setting_data_type) }}</td>
             <td>{{ $item->description }}</td>
             <td>
                 @if ($item->is_value_editable)

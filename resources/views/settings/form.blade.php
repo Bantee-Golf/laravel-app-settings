@@ -28,7 +28,21 @@
 
                             {{ csrf_field() }}
 
-                            {{ $form->render() }}
+                            @if ($entity->is_key_editable)
+                                {{ $form->render('setting_key') }}
+                            @else
+                                {{ $form->render('setting_key', null, ['attributes' => 'readonly']) }}
+                            @endif
+
+                            @switch ($entity->setting_data_type)
+                                @case (\EMedia\AppSettings\Entities\Setting::DATA_TYPE_TEXT)
+                                    {{ $form->render('setting_value', null, ['type' => 'textarea']) }}
+                                    @break
+                                @default
+                                    {{ $form->render('setting_value') }}
+                            @endswitch
+
+                            {{ $form->render(null, ['setting_key', 'setting_value']) }}
 
                             <div class="form-group">
                                 <div class="col-sm-10 col-sm-offset-2">
