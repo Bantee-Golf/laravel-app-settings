@@ -21,10 +21,10 @@
         }
     ],
     "require": {
-        "illuminate/database": "^5.7",
-        "illuminate/support": "^5.7",
+        "illuminate/database": "^5.7|^6.0",
+        "illuminate/support": "^5.7|^6.0",
         "emedia/formation": "~0.0",
-        "emedia/quick-data-laravel": "~2.0"
+        "emedia/quick-data-laravel": "~2.0|~3.0"
     },
     "extra": {
         "laravel": {
