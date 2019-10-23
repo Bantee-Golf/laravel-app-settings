@@ -41,7 +41,7 @@ class SettingsController extends Controller
 	public function create()
 	{
 		$entity = new Setting();
-
+		$entity->is_key_editable = true;
 		$data = [
 			'pageTitle' => 'Add New Setting',
 			'entity' => $entity,
