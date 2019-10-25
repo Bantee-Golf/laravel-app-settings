@@ -1,5 +1,12 @@
 @extends('oxygen::layouts.master-dashboard')
 
+@section('breadcrumbs')
+    {{ lotus()->breadcrumbs([
+        ['Dashboard', route('dashboard')],
+        [$pageTitle, null, true]
+    ]) }}
+@stop
+
 @section('pageMainActions')
     @include('oxygen::dashboard.partials.searchField')
 
