@@ -55,7 +55,7 @@ class SettingsController extends Controller
 	{
 		$setting = $this->settingsRepo->find($id);
 		if (!$setting) {
-			return redirect()->route('settings')->with('error', 'Unable to find a setting with the given ID.');
+			return redirect()->route('manage.settings.index')->with('error', 'Unable to find a setting with the given ID.');
 		}
 
 		$data = [
