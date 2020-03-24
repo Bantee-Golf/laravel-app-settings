@@ -18,13 +18,17 @@
         {
             "type": "vcs",
             "url": "git@bitbucket.org:elegantmedia/php-helpers.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:elegantmedia/lotus.git"
         }
     ],
     "require": {
-        "illuminate/database": "^5.7|^6.0",
-        "illuminate/support": "^5.7|^6.0",
-        "emedia/formation": "^0.2",
-        "emedia/quick-data-laravel": "^2.0|^3.0"
+        "illuminate/database": "^6.0|^7.0",
+        "illuminate/support": "^6.0|^7.0",
+        "emedia/formation": "~0.3",
+        "emedia/quick-data-laravel": "^3.0|^4.0"
     },
     "extra": {
         "laravel": {

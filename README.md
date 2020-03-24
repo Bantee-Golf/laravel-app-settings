@@ -1,6 +1,6 @@
 # Laravel Settings
 
-Save app settings to database and retrieve them. Supports Laravel 5.7 / 6.0
+Save app settings to database and retrieve them. Supports Laravel 5.7 / 6.0 / 7.0
 
 ### Installation Instructions
 
