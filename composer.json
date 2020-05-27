@@ -41,7 +41,7 @@
         }
     },
     "autoload": {
-        "classmap": [
+        "files": [
             "src/functions.php"
         ],
         "psr-4": {
