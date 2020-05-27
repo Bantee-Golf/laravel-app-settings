@@ -38,11 +38,11 @@ php artisan vendor:publish --tag=app-settings-views
 ## Usage
 
 ```
-// Settings a setting
+// Set a setting (this will call setOrUpdate)
 setting_set('mySetting', '3445');
 
 // or use the Facade
-{{ Setting::set('mySetting', '3445') }}
+{{ Setting::setOrUpdate('mySetting', '3445') }}
 
 // Retrieving a setting
 setting('mySetting', 'default');
@@ -56,6 +56,9 @@ setting_forget('mySetting');
 
 // Update a setting
 {{ Setting::update('mySetting', '3445') }}
+
+// Set a setting (this will throw an exception if setting exists)
+{{ Setting::set('mySetting', '3445') }}
 
 // Set or Update a Setting
 {{ Setting::setOrUpdate('mySetting', '3445') }}

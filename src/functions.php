@@ -29,7 +29,7 @@ if (!function_exists('setting_set'))
 	 */
 	function setting_set($key, $value, $dataType = null, $description = null)
 	{
-		\EMedia\AppSettings\Facades\Setting::set($key, $value, $dataType, $description);
+		\EMedia\AppSettings\Facades\Setting::setOrUpdate($key, $value, $dataType, $description);
 	}
 }
 
