@@ -124,6 +124,24 @@ class SettingsManager
 		return $default;
 	}
 
+	/**
+	 *
+	 * Remove a setting if it exists
+	 *
+	 * @param $key
+	 *
+	 * @return string
+	 */
+	public function forget($key)
+	{
+		$setting = Setting::where('setting_key', $key)->first();
+
+		// only delete if they're editable
+		if ($setting && $setting->is_key_editable) {
+			$setting->delete();
+		}
+	}
+
 	protected function validate($data, $isNewRecord = true)
 	{
 		$rules = [

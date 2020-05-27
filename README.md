@@ -47,6 +47,9 @@ setting_set('mySetting', '3445');
 // Retrieving a setting
 setting('mySetting', 'default');
 
+// Delete a setting
+setting_forget('mySetting');
+
 // or use the Facade
 {{ Setting::get('mySetting') }}
 {{ Setting::get('mySetting', $default) }}
@@ -58,7 +61,10 @@ setting('mySetting', 'default');
 {{ Setting::setOrUpdate('mySetting', '3445') }}
 
 // Set multiple settings
-{{ Setting::setByArray([ 'setting_key' => 'max_num_users', 'setting_value' => 100, 'setting_data_type' => 'int', 'description' => 'Maximum number of allowed users.' ]) }} 
+{{ Setting::setByArray([ 'setting_key' => 'max_num_users', 'setting_value' => 100, 'setting_data_type' => 'int', 'description' => 'Maximum number of allowed users.' ]) }}
+
+// Delete a setting
+{{ Setting::forget('mySetting') }}
 ```
 
 ## Settings Page

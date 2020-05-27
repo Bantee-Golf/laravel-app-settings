@@ -32,3 +32,17 @@ if (!function_exists('setting_set'))
 		\EMedia\AppSettings\Facades\Setting::set($key, $value, $dataType, $description);
 	}
 }
+
+if (!function_exists('setting_forget'))
+{
+	/**
+	 *
+	 * Delete a setting
+	 *
+	 * @param      $key
+	 */
+	function setting_forget($key)
+	{
+		\EMedia\AppSettings\Facades\Setting::forget($key);
+	}
+}
