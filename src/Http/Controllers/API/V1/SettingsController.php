@@ -69,6 +69,9 @@ class SettingsController extends Controller
             return (new APICall)->setName('Get Setting')
                 ->setDescription('Returns the value of a single app setting requested by key.')
                 ->setConsumes([APICall::CONSUME_JSON])
+                ->setParams([
+                    (new Param('key', 'String', 'Key of the setting', 'path')),
+                ])
                 ->setSuccessExample('{
 				"payload": "... value of the requested setting ...",
 				"message": "",
