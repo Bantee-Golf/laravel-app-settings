@@ -36,6 +36,24 @@ class SettingsTableSeeder extends Seeder
 				'is_value_editable' => false,
 			],
 			*/
+            [
+                'setting_key' => 'ABOUT_US',
+                'setting_data_type' => 'string',
+                'description' => 'Content for the about us screen.',
+                'is_key_editable'	=> false,
+            ],
+            [
+                'setting_key' => 'PRIVACY_POLICY',
+                'setting_data_type' => 'string',
+                'description' => 'Content for application privacy policy.',
+                'is_key_editable'	=> false,
+            ],
+            [
+                'setting_key' => 'TERMS_AND_CONDITIONS',
+                'setting_data_type' => 'string',
+                'description' => 'Content for application terms and conditins.',
+                'is_key_editable'	=> false,
+            ],
 		];
 
 		$this->seedButDontCreateDuplicates($data, Setting::class, 'setting_key', 'setting_key');
