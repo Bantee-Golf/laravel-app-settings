@@ -36,7 +36,7 @@ class SettingsController extends Controller
                     (new Param('Accept', 'String', '`application/json`'))->setDefaultValue('application/json'),
                     (new Param('x-api-key', 'String', 'API Key'))->setDefaultValue('123-123-123-123'),
                 ])
-                ->setSuccessObject(Settings::class)
+                ->setSuccessPaginatedObject(Setting::class)
                 ->setSuccessExample('{
     "payload": {
         "settings": [
@@ -70,9 +70,7 @@ class SettingsController extends Controller
 
         $settings = $this->settingsRepo->all();
 
-        return response()->apiSuccess([
-            'settings' => $settings,
-        ]);
+        return response()->apiSuccess($settings);
     }
 
     /**
