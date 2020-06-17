@@ -26,6 +26,28 @@ class Setting extends Model
 		'description',
 	];
 
+	protected $hidden = [
+		'setting_key',
+		'setting_value',
+		'setting_data_type',
+		'description',
+		'is_key_editable',
+		'is_value_editable',
+	];
+
+	protected $appends = [
+		'key',
+		'value',
+	];
+
+	protected $visible = [
+		'id',
+		'key',
+		'value',
+		'created_at',
+		'updated_at',
+	];
+
 	protected $searchable = [
 		'setting_key',
 		'setting_value',
@@ -56,4 +78,27 @@ class Setting extends Model
 		],
 	];
 
+	public function getExtraApiFields()
+    {
+        return [
+            'key',
+            'value',
+        ];
+    }
+
+	/**
+	 * Returns the setting key
+	 */
+	public function getKeyAttribute()
+	{
+		return $this->setting_key;
+	}
+
+	/**
+	 * Returns the setting value
+	 */
+	public function getValueAttribute()
+	{
+		return $this->setting_value;
+	}
 }

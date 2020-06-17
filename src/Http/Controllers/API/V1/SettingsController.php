@@ -38,26 +38,41 @@ class SettingsController extends Controller
                 ])
                 ->setSuccessObject(Settings::class)
                 ->setSuccessExample('{
-				"payload": {
-					"ABOUT_US": "... content for the about us ...",
-					"PRIVACY_POLICY": "... content for the privacy policy ...",
-					"TERMS_AND_CONDITIONS": "... content for the terms and conditions ..."
-				},
-				"message": "",
-				"result": true
-			}');
+    "payload": {
+        "settings": [
+            {
+                "id": 1,
+                "created_at": "2020-06-17T11:05:27.000000Z",
+                "updated_at": "2020-06-17T11:05:27.000000Z",
+                "key": "ABOUT_US",
+                "value": null
+            },
+            {
+                "id": 2,
+                "created_at": "2020-06-17T11:05:27.000000Z",
+                "updated_at": "2020-06-17T11:05:27.000000Z",
+                "key": "PRIVACY_POLICY",
+                "value": null
+            },
+            {
+                "id": 3,
+                "created_at": "2020-06-17T11:05:27.000000Z",
+                "updated_at": "2020-06-17T11:05:27.000000Z",
+                "key": "TERMS_AND_CONDITIONS",
+                "value": null
+            }
+        ]
+    },
+    "message": "",
+    "result": true
+}');
         });
 
-        $params = $this->settingsRepo->all();
+        $settings = $this->settingsRepo->all();
 
-        $settings = [];
-        if($params) {
-            foreach ($params as $setting) {
-                $settings[$setting->setting_key] = $setting->setting_value;
-            }
-        }
-
-        return response()->apiSuccess($settings);
+        return response()->apiSuccess([
+            'settings' => $settings,
+        ]);
     }
 
     /**
@@ -73,16 +88,22 @@ class SettingsController extends Controller
                     (new Param('key', 'String', 'Key of the setting', 'path')),
                 ])
                 ->setSuccessExample('{
-				"payload": "... value of the requested setting ...",
-				"message": "",
-				"result": true
-			}');
+    "payload": {
+        "id": 1,
+        "created_at": "2020-06-17T11:05:27.000000Z",
+        "updated_at": "2020-06-17T11:05:27.000000Z",
+        "key": "ABOUT_US",
+        "value": null
+    },
+    "message": "",
+    "result": true
+}');
         });
 
         $setting = Setting::where('setting_key', $key)->first();
 
         if ($setting) {
-            return response()->apiSuccess($setting->setting_value);
+            return response()->apiSuccess($setting);
         }
 
         return response()->apiError('Requested setting could not be found.');
