@@ -11,9 +11,7 @@ class Settings extends Model
     public function getExtraApiFields()
     {
         return [
-            'ABOUT_US',
-            'PRIVACY_POLICY',
-            'TERMS_AND_CONDITIONS',
+            'settings' => ['type' => 'array', 'items' => 'Setting']
         ];
     }
 }
