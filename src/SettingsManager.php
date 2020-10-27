@@ -4,8 +4,8 @@
 namespace EMedia\AppSettings;
 
 
-use EMedia\AppSettings\Entities\Setting;
-use EMedia\AppSettings\Entities\SettingsRepository;
+use EMedia\AppSettings\Entities\Settings\Setting;
+use EMedia\AppSettings\Entities\Settings\SettingsRepository;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 
@@ -22,6 +22,17 @@ class SettingsManager
 		$this->settingsRepo = $settingsRepo;
 	}
 
+	/**
+	 *
+	 * Set a setting
+	 *
+	 * @param $key
+	 * @param $value
+	 * @param null $dataType
+	 * @param null $description
+	 *
+	 * @return \Illuminate\Database\Eloquent\Model|mixed
+	 */
 	public function set($key, $value, $dataType = null, $description = null)
 	{
 		$data = [
@@ -44,7 +55,16 @@ class SettingsManager
 		return $this->setByArray($data);
 	}
 
-	public function update($id, $data)
+	/**
+	 *
+	 * Update by ID
+	 *
+	 * @param $id
+	 * @param $data
+	 *
+	 * @return mixed
+	 */
+	public function updateById($id, array $data)
 	{
 		$this->validate($data, false);
 		$setting = $this->settingsRepo->find($id);
@@ -78,7 +98,7 @@ class SettingsManager
 	 *
 	 * @return mixed
 	 */
-	public function setOrUpdate($key, $value, $dataType = null, $description = null)
+	public function setOrUpdate(string $key, string $value, $dataType = null, string $description = null)
 	{
 		/** @var Setting $existingSetting */
 		$existingSetting = Setting::where('setting_key', $key)->first();
@@ -95,6 +115,14 @@ class SettingsManager
 		return $this->set($key, $value, $dataType, $description);
 	}
 
+	/**
+	 *
+	 * Set a new setting by an array
+	 *
+	 * @param $data
+	 *
+	 * @return \Illuminate\Database\Eloquent\Model|mixed
+	 */
 	public function setByArray($data)
 	{
 		$this->validate($data);
@@ -107,6 +135,8 @@ class SettingsManager
 	 * Retrieve a setting from the database
 	 *
 	 * @param $key
+	 *
+	 * @param string $default
 	 *
 	 * @return string
 	 */
@@ -132,7 +162,7 @@ class SettingsManager
 	 *
 	 * @return string
 	 */
-	public function forget($key)
+	public function forget($key): ?string
 	{
 		$setting = Setting::where('setting_key', $key)->first();
 
@@ -142,7 +172,7 @@ class SettingsManager
 		}
 	}
 
-	protected function validate($data, $isNewRecord = true)
+	protected function validate($data, $isNewRecord = true): void
 	{
 		$rules = [
 			'setting_key'  => 'required|unique:settings,setting_key',

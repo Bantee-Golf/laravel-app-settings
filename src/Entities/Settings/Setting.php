@@ -1,23 +1,32 @@
 <?php
 
 
-namespace EMedia\AppSettings\Entities;
+namespace EMedia\AppSettings\Entities\Settings;
 
 
 use EMedia\Formation\Entities\GeneratesFields;
-use EMedia\QuickData\Entities\Search\SearchableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Setting extends Model
 {
 
-	const DATA_TYPE_JSON = 'json';
-	const DATA_TYPE_TEXT = 'text';
-	const DATA_TYPE_STRING = 'string';
-	const DATA_TYPE_BOOLEAN = 'bool';
+	public const DATA_TYPE_JSON    = 'json';
+	public const DATA_TYPE_TEXT    = 'text';
+	public const DATA_TYPE_STRING  = 'string';
+	public const DATA_TYPE_BOOLEAN = 'bool';
 
 	use GeneratesFields;
-	use SearchableTrait;
+	use Searchable;
+
+	public function getSearchableFields(): array
+	{
+		return [
+			'setting_key',
+			'setting_value',
+			'description',
+		];
+	}
 
 	protected $fillable = [
 		'setting_key',
@@ -46,12 +55,6 @@ class Setting extends Model
 		'value',
 		'created_at',
 		'updated_at',
-	];
-
-	protected $searchable = [
-		'setting_key',
-		'setting_value',
-		'description',
 	];
 
 	protected $editable = [

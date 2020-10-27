@@ -4,30 +4,14 @@
 namespace EMedia\AppSettings;
 
 
+use ElegantMedia\OxygenFoundation\Facades\Navigator;
+use ElegantMedia\OxygenFoundation\Navigation\NavItem;
+use EMedia\AppSettings\Commands\OxygenAppSettingsExtInstallCommand;
 use EMedia\AppSettings\Console\Commands\AppSettingsPackageSetupCommand;
-use EMedia\Helpers\Components\Menu\MenuBar;
-use EMedia\Helpers\Components\Menu\MenuItem;
-use EMedia\Helpers\Console\Commands\ComposerAutoload;
 use Illuminate\Support\ServiceProvider;
 
 class AppSettingsServiceProvider extends ServiceProvider
 {
-
-	public function boot()
-	{
-		$this->loadViewsFrom(__DIR__ . '/../resources/views', 'app-settings');
-
-		$this->publishes([
-			__DIR__ . '/../resources/views' => base_path('resources/views/vendor/app-settings'),
-		], 'app-settings-views');
-
-		// register the menu items
-		$menuItem = (new MenuItem())->setText('Settings')
-									->setResource('manage.settings.index')
-									->setClass('fas fa-cogs');
-
-		MenuBar::add($menuItem, 'sidebar.manage');
-	}
 
 	/**
 	 * Register the service provider.
@@ -36,11 +20,36 @@ class AppSettingsServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		if (!app()->environment('production')) {
-			$this->commands(ComposerAutoload::class);
-			$this->commands(AppSettingsPackageSetupCommand::class);
+		if (app()->environment(['local', 'testing'])) {
+			$this->commands(OxygenAppSettingsExtInstallCommand::class);
 		}
 
-		$this->app->singleton('EMedia\AppSettings\SettingsManager', SettingsManager::class);
+		$this->app->singleton(SettingsManager::class);
 	}
+
+	public function boot()
+	{
+		$this->publishes([
+			__DIR__ . '/../publish' => base_path(),
+		], 'oxygen::auto-publish');
+
+		$this->loadViewsFrom(__DIR__ . '/../resources/views', 'app-settings');
+
+		$this->publishes([
+			__DIR__ . '/../resources/views' => base_path('resources/views/vendor/app-settings'),
+		], 'views');
+
+		$this->setupNavItem();
+	}
+
+	protected function setupNavItem()
+	{
+		// register the menu items
+		$navItem = new NavItem('Settings');
+		$navItem->setResource('manage.settings.index')
+			->setIconClass('fas fa-cogs');
+
+		Navigator::addItem($navItem, 'sidebar.manage');
+	}
+
 }
