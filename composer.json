@@ -1,34 +1,37 @@
 {
     "name": "emedia/app-settings",
     "description": "Set application-wide settings in the database and retrieve them.",
-    "type": "package",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Shane Perera",
+            "email": "shane@elegantmedia.com.au"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "elegantmedia/oxygen-foundation": "^1.0",
+        "emedia/formation": "^0.4.0"
+    },
+    "autoload": {
+        "files": [
+            "src/functions.php"
+        ],
+        "psr-4": {
+            "EMedia\\AppSettings\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "repositories": [
         {
             "type":"vcs",
             "url":"git@bitbucket.org:elegantmedia/formation.git"
-        },
-        {
-            "type":"vcs",
-            "url":"git@bitbucket.org:elegantmedia/quickdata-laravel.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:elegantmedia/laravel-helpers.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:elegantmedia/php-helpers.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:elegantmedia/lotus.git"
         }
     ],
-    "require": {
-        "illuminate/database": "^6.0|^7.0",
-        "illuminate/support": "^6.0|^7.0",
-        "emedia/formation": "~0.3",
-        "emedia/quick-data-laravel": "^3.0|^4.0"
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
@@ -39,22 +42,5 @@
                 "Setting": "EMedia\\AppSettings\\Facades\\Setting"
             }
         }
-    },
-    "autoload": {
-        "files": [
-            "src/functions.php"
-        ],
-        "psr-4": {
-            "EMedia\\AppSettings\\": "src/"
-        }
-    },
-    "license": "proprietary",
-    "authors": [
-        {
-            "name": "Shane Perera",
-            "email": "shane@elegantmedia.com.au"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

@@ -1,6 +1,15 @@
-# Laravel Settings
+# Laravel App Settings
 
-Save app settings to database and retrieve them. Supports Laravel 5.7 / 6.0 / 7.0
+Save app settings to database and retrieve them.
+
+## Version Compatibility
+
+| Laravel Version   | Package Version   | Branch           |
+| ----------------- | ----------------- |------------------|
+| v8                | 4.x               | master           |
+| v7                | 3.x               | version/v3.x     |
+
+See [change log for change history](CHANGELOG.md) and compatibility with past versions.
 
 ### Installation Instructions
 
@@ -18,21 +27,27 @@ Add the repository to `composer.json`
 composer require emedia/app-settings
 ```
 
-## Configuration
+Install the package.
 
-Setup the package
 ```
-php artisan setup:package:app-settings
+php artisan oxygen:app-settings:install
 ```
 
-Run the migrations
-```
+Then migrate to create the tables and seed the database.
+
+``` bash
 php artisan migrate
+php artisan db:seed
 ```
 
-(Optional) If you need custom views, publish the views
+## Optional Customisation Steps
+
 ```
-php artisan vendor:publish --tag=app-settings-views
+// Seed the database
+php artisan db:seed --class="Database\Seeders\OxygenExtensions\AutoSeed\AppSettingsTableSeeder"
+
+// Publish views
+php artisan vendor:publish --provider="EMedia\AppSettings\AppSettingsServiceProvider" --tag=views --force
 ```
 
 ## Usage
@@ -70,10 +85,6 @@ setting_forget('mySetting');
 {{ Setting::forget('mySetting') }}
 ```
 
-## Settings Page
-
-To view, update, or delete settings in the browser, go to `/manage/settings`.
-
 ## More Info
 
 #### Settings Manager
@@ -109,19 +120,14 @@ Control fields can only be set by the `Setting::setByArray` method. All other `s
 You may also make http requests directly to update settings
 
 | Method | Route  | Fields | Description |
-| ----- | ------ | ---- | ----------- |
-| POST | /manage/settings | setting_key, setting_value, setting_data_type, description | Save a new setting | 
-| PUT | /manage/settings/{id} | setting_key, setting_value, setting_data_type, description | Updates a setting at given id |
-| DELETE |  /manage/settings/{id} | - | Removes a setting 
+| ------ | ------ | ------ | ----------- |
+| POST   | /manage/settings | setting_key, setting_value, setting_data_type, description | Save a new setting | 
+| PUT    | /manage/settings/{id} | setting_key, setting_value, setting_data_type, description | Update a setting at given id |
+| DELETE |  /manage/settings/{id} | - | Remove a setting 
 
-#### Troubleshooting
+## Contributing
 
-The package should get auto-discovered with Laravel 5.7+. If not, add these to `config\app.php`.
+- Found a bug? Report as an issue and if you can, submit a pull request.
+- Please see [CONTRIBUTING](CONTRIBUTING.md) and for details.
 
-```
-\\ In the service providers
-EMedia\AppSettings\AppSettingsServiceProvider::class,
-
-\\ For aliases
-'Setting' => EMedia\AppSettings\Facades\Setting::class,
-```
+Copyright (c) 2020 Elegant Media.

@@ -1,17 +1,16 @@
 <?php
 
-
 namespace EMedia\AppSettings\Commands;
 
-
+use ElegantMedia\OxygenFoundation\Console\Commands\ExtensionInstallCommand;
 use EMedia\AppSettings\AppSettingsServiceProvider;
 
-class OxygenAppSettingsExtInstallCommand extends \ElegantMedia\OxygenFoundation\Console\Commands\ExtensionInstallCommand
+class OxygenAppSettingsInstallCommand extends ExtensionInstallCommand
 {
 
-	protected $signature = 'oxygen:ext:app-settings:install';
+	protected $signature = 'oxygen:app-settings:install';
 
-	protected $description = 'Setup the App Settings package';
+	protected $description = 'Setup the App Settings Extension';
 
 	public function getExtensionServiceProvider(): string
 	{

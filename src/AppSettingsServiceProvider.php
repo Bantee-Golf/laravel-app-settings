@@ -6,7 +6,7 @@ namespace EMedia\AppSettings;
 
 use ElegantMedia\OxygenFoundation\Facades\Navigator;
 use ElegantMedia\OxygenFoundation\Navigation\NavItem;
-use EMedia\AppSettings\Commands\OxygenAppSettingsExtInstallCommand;
+use EMedia\AppSettings\Commands\OxygenAppSettingsInstallCommand;
 use EMedia\AppSettings\Console\Commands\AppSettingsPackageSetupCommand;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,7 +21,7 @@ class AppSettingsServiceProvider extends ServiceProvider
 	public function register()
 	{
 		if (app()->environment(['local', 'testing'])) {
-			$this->commands(OxygenAppSettingsExtInstallCommand::class);
+			$this->commands(OxygenAppSettingsInstallCommand::class);
 		}
 
 		$this->app->singleton(SettingsManager::class);
