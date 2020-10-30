@@ -1,37 +1,18 @@
 <?php
+namespace Database\Seeders\OxygenExtensions\AutoSeed;
 
-use EMedia\AppSettings\Entities\Setting;
-use EMedia\QuickData\Database\Seeds\Traits\SeedsWithoutDuplicates;
-use Illuminate\Database\Seeder;
+use ElegantMedia\OxygenFoundation\Database\Seeders\SeedWithoutDuplicates;
+use EMedia\AppSettings\Entities\Settings\Setting;
 use Illuminate\Support\Str;
 
-class SettingsTableSeeder extends Seeder
+class AppSettingsTableSeeder extends \Illuminate\Database\Seeder
 {
 
-	use SeedsWithoutDuplicates;
+	use SeedWithoutDuplicates;
 
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
 	public function run()
 	{
-		// $faker = \Faker\Factory::create('en_AU');
-
-		// seed the settings, without creating any duplicates
-
 		$data = [
-			//[
-			//	'setting_key' 		=> 'setting_1',
-			//	'setting_value' 	=> 10
-			// ],
-			// [
-			// 'setting_key' 		=> 'setting_3_non_editable_value',
-			// 'setting_value' 	=> 'false',
-			// 'setting_data_type' => 'boolean',
-			// 'is_value_editable' => false,
-			// ],
 			[
 				'setting_key' => 'ABOUT_US',
 				'setting_data_type' => 'text',
@@ -90,7 +71,7 @@ class SettingsTableSeeder extends Seeder
 			],
 		];
 
-		$this->seedButDontCreateDuplicates($data, Setting::class, 'setting_key', 'setting_key');
+		$this->seedWithoutDuplicates($data, Setting::class, 'setting_key', 'setting_key');
 	}
 
 	/**
@@ -109,7 +90,7 @@ class SettingsTableSeeder extends Seeder
 			$filename = Str::snake(strtolower($seedKey)) . '.txt';
 		}
 
-		$relPath = 'seeds' . DIRECTORY_SEPARATOR . 'SeedData' . DIRECTORY_SEPARATOR . $filename;
+		$relPath = 'seeders' . DIRECTORY_SEPARATOR . 'SeedData' . DIRECTORY_SEPARATOR . $filename;
 		if (file_exists(database_path($relPath)))
 		{
 			return file_get_contents(database_path($relPath));
@@ -117,4 +98,5 @@ class SettingsTableSeeder extends Seeder
 
 		return "~ADD YOUR {$seedKey} CONTENT. Or create a file at {$relPath} to auto-seed.~";
 	}
+
 }

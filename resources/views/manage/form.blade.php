@@ -1,5 +1,12 @@
 @extends('oxygen::layouts.master-dashboard')
 
+@php
+	$form = $form ?? new \EMedia\Formation\Builder\Formation();
+	if ($entity) {
+		$form->setModel($entity);
+	}
+@endphp
+
 @section('content')
     {{ lotus()->pageHeadline($pageTitle) }}
 
@@ -37,7 +44,7 @@
                 @endif
 
                 @switch ($entity->setting_data_type)
-                    @case (\EMedia\AppSettings\Entities\Setting::DATA_TYPE_TEXT)
+                    @case (\EMedia\AppSettings\Entities\Settings\Setting::DATA_TYPE_TEXT)
                     {{ $form->render('setting_value', null, ['type' => 'textarea']) }}
                     @break
                     @default

@@ -5,10 +5,8 @@ namespace EMedia\AppSettings\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use EMedia\Api\Docs\APICall;
 use EMedia\Api\Docs\Param;
-use EMedia\AppSettings\Entities\Setting;
-use EMedia\AppSettings\Entities\SettingsRepository;
-use EMedia\AppSettings\Entities\Api\Settings;
-use Illuminate\Http\Request;
+use EMedia\AppSettings\Entities\Settings\Setting;
+use EMedia\AppSettings\Entities\Settings\SettingsRepository;
 
 class SettingsController extends Controller
 {
