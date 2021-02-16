@@ -8,10 +8,12 @@ if (!function_exists('setting'))
 	 *
 	 * @param        $key
 	 * @param string $default
+	 *
+	 * @return mixed
 	 */
 	function setting($key, $default = '')
 	{
-		\EMedia\AppSettings\Facades\Setting::get($key, $default);
+		return \EMedia\AppSettings\Facades\Setting::get($key, $default);
 	}
 }
 
@@ -26,10 +28,12 @@ if (!function_exists('setting_set'))
 	 * @param      $value
 	 * @param null $dataType
 	 * @param null $description
+	 *
+	 * @return mixed
 	 */
 	function setting_set($key, $value, $dataType = null, $description = null)
 	{
-		\EMedia\AppSettings\Facades\Setting::setOrUpdate($key, $value, $dataType, $description);
+		return \EMedia\AppSettings\Facades\Setting::setOrUpdate($key, $value, $dataType, $description);
 	}
 }
 
