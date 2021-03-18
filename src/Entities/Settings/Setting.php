@@ -4,9 +4,11 @@
 namespace EMedia\AppSettings\Entities\Settings;
 
 
+use ElegantMedia\SimpleRepository\Search\Eloquent\SearchableLike;
+use EMedia\AppSettings\Entities\SettingGroups\SettingGroup;
 use EMedia\Formation\Entities\GeneratesFields;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+use Illuminate\Validation\Rule;
 
 class Setting extends Model
 {
@@ -17,7 +19,7 @@ class Setting extends Model
 	public const DATA_TYPE_BOOLEAN = 'bool';
 
 	use GeneratesFields;
-	use Searchable;
+	use SearchableLike;
 
 	public function getSearchableFields(): array
 	{
@@ -33,6 +35,7 @@ class Setting extends Model
 		'setting_value',
 		'setting_data_type',
 		'description',
+		'setting_group_id',
 	];
 
 	protected $hidden = [
@@ -79,7 +82,39 @@ class Setting extends Model
 				self::DATA_TYPE_BOOLEAN => 'True/False',
 			]
 		],
+		[
+			'name' => 'setting_group_id',
+			'display_name' => 'Setting Group',
+			'options_entity' => SettingGroup::class,
+			'type' => 'select',
+		]
 	];
+
+	public function getCreateRules()
+	{
+		return [
+			'setting_key' => 'unique:settings,setting_key',
+		];
+	}
+
+	public function getUpdateRules($id = null)
+	{
+		return [
+			'setting_key' => [
+				'required',
+				Rule::unique('settings', 'setting_key')->ignore($id),
+			],
+		];
+	}
+
+	public function getIsKeyEditableAttribute($value)
+	{
+		if (isset($this->attributes['is_key_editable'])) {
+			return $this->attributes['is_key_editable'];
+		}
+
+		return true;
+	}
 
 	public function getExtraApiFields()
     {
@@ -103,5 +138,10 @@ class Setting extends Model
 	public function getValueAttribute()
 	{
 		return $this->setting_value;
+	}
+
+	public function group()
+	{
+		return $this->belongsTo(SettingGroup::class, 'setting_group_id');
 	}
 }

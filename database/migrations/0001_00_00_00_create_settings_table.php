@@ -12,7 +12,7 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function($table) {
+		Schema::create('settings', function($table) {
 			$table->increments('id');
 			$table->string('setting_key', 100)->index()->unique('key');
 			$table->string('setting_data_type')->nullable();
@@ -21,7 +21,7 @@ class CreateSettingsTable extends Migration
 			$table->boolean('is_key_editable')->default(true);
 			$table->boolean('is_value_editable')->default(true);
 			$table->timestamps();
-        });	
+		});
     }
 
     /**
@@ -31,6 +31,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-		Schema::drop('settings');
+		Schema::dropIfExists('settings');
     }
 }
