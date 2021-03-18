@@ -93,7 +93,7 @@ class Setting extends Model
 	public function getCreateRules()
 	{
 		return [
-			'setting_key' => 'unique:settings,setting_key',
+			'setting_key' => 'required|unique:settings,setting_key',
 		];
 	}
 

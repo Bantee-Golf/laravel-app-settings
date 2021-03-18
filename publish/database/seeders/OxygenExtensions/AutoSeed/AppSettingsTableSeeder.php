@@ -113,7 +113,7 @@ class AppSettingsTableSeeder extends \Illuminate\Database\Seeder
 		{
 			$template = file_get_contents(database_path($relPath));
 
-			$content = Str::replaceArray([
+			$content = str_replace([
 				'[[APP_NAME]]',
 			], [
 				config('app.name'),
