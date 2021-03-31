@@ -104,7 +104,7 @@ class SettingsManager
 		$existingSetting = Setting::where('setting_key', $key)->first();
 
 		if ($existingSetting) {
-			return $this->update($existingSetting->id, [
+			return $this->settingsRepo->update($existingSetting, [
 				'setting_key' => $key,
 				'setting_value' => $value,
 				'setting_data_type' => $dataType,
