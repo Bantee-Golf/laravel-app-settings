@@ -13,7 +13,7 @@
         "php": "^7.3",
         "cviebrock/eloquent-sluggable": "^8.0",
         "elegantmedia/oxygen-foundation": "^1.0",
-        "emedia/formation": "^0.4.0"
+        "emedia/formation": "^0.4|^0.5"
     },
     "autoload": {
         "files": [
