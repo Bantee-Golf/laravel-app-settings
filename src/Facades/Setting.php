@@ -4,9 +4,9 @@ namespace EMedia\AppSettings\Facades;
 use EMedia\AppSettings\SettingsManager;
 
 /**
- * @method static set()
+ * @method static set($key, $value = null, $dataType = null, $description = null)
  * @method static updateById($id, array $data);
- * @method static setOrUpdate(string $key, string $value, $dataType = null, $description = null);
+ * @method static setOrUpdate(string $key, string $value = null, $dataType = null, $description = null);
  * @method static Setting setByArray(array $data);
  * @method static get($key, $default = '')
  * @method static forget($key) Remove a setting if it exists

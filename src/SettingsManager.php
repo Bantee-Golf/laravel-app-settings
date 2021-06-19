@@ -33,7 +33,7 @@ class SettingsManager
 	 *
 	 * @return \Illuminate\Database\Eloquent\Model|mixed
 	 */
-	public function set($key, $value, $dataType = null, $description = null)
+	public function set($key, $value = null, $dataType = null, $description = null)
 	{
 		$data = [
 			'setting_key' => $key,
@@ -98,7 +98,7 @@ class SettingsManager
 	 *
 	 * @return mixed
 	 */
-	public function setOrUpdate(string $key, string $value, $dataType = null, string $description = null)
+	public function setOrUpdate(string $key, string $value = null, $dataType = null, string $description = null)
 	{
 		/** @var Setting $existingSetting */
 		$existingSetting = Setting::where('setting_key', $key)->first();
@@ -176,7 +176,7 @@ class SettingsManager
 	{
 		$rules = [
 			'setting_key'  => 'required|unique:settings,setting_key',
-			'setting_value' => 'required',
+			'setting_value' => 'present',
 		];
 
 		if (!$isNewRecord) {
