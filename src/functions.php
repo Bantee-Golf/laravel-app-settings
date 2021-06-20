@@ -25,13 +25,13 @@ if (!function_exists('setting_set'))
 	 * Helper function to set a setting
 	 *
 	 * @param      $key
-	 * @param      $value
+	 * @param null $value
 	 * @param null $dataType
 	 * @param null $description
 	 *
 	 * @return mixed
 	 */
-	function setting_set($key, $value, $dataType = null, $description = null)
+	function setting_set($key, $value = null, $dataType = null, $description = null)
 	{
 		return \EMedia\AppSettings\Facades\Setting::setOrUpdate($key, $value, $dataType, $description);
 	}
