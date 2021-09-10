@@ -160,9 +160,9 @@ class SettingsManager
 	 *
 	 * @param $key
 	 *
-	 * @return string
+	 * @return void
 	 */
-	public function forget($key): ?string
+	public function forget($key): void
 	{
 		$setting = Setting::where('setting_key', $key)->first();
 
