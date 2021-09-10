@@ -10,10 +10,10 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.3|^8.0",
         "cviebrock/eloquent-sluggable": "^8.0",
         "elegantmedia/oxygen-foundation": "^1.0",
-        "emedia/formation": "^0.4|^0.5"
+        "emedia/formation": "^0.4|^0.5|^0.6"
     },
     "autoload": {
         "files": [
@@ -29,7 +29,11 @@
         {
             "type":"vcs",
             "url":"git@bitbucket.org:elegantmedia/formation.git"
-        }
+        },
+		{
+			"type":"vcs",
+			"url":"git@bitbucket.org:elegantmedia/lotus.git"
+		}
     ],
     "config": {
         "sort-packages": true
