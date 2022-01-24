@@ -11,9 +11,9 @@
     ],
     "require": {
         "php": "^8.0",
-        "cviebrock/eloquent-sluggable": "^8.0",
         "elegantmedia/oxygen-foundation": "^2.0",
-        "emedia/formation": "^1.0"
+        "emedia/formation": "^1.0",
+        "spatie/laravel-sluggable": "^3.3"
     },
     "autoload": {
         "files": [

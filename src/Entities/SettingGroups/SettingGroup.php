@@ -4,18 +4,19 @@
 namespace EMedia\AppSettings\Entities\SettingGroups;
 
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use ElegantMedia\SimpleRepository\Search\Eloquent\SearchableLike;
 use EMedia\AppSettings\Entities\Settings\Setting;
 use EMedia\Formation\Entities\GeneratesFields;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class SettingGroup extends Model
 {
 
 	use GeneratesFields;
 	use SearchableLike;
-	use Sluggable;
+	use HasSlug;
 
 	protected $searchable = [
 		'name',
@@ -32,13 +33,9 @@ class SettingGroup extends Model
 		'sort_order',
 	];
 
-	public function sluggable(): array
+	public function getSlugOptions(): SlugOptions
 	{
-		return [
-			'slug' => [
-				'source' => 'name',
-			]
-		];
+		return SlugOptions::create()->generateSlugsFrom('name')->saveSlugsTo('slug');
 	}
 
 	public function getCreateRules()
@@ -59,4 +56,5 @@ class SettingGroup extends Model
 	{
 		return $this->hasMany(Setting::class);
 	}
+
 }
