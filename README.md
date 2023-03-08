@@ -4,10 +4,14 @@ Save app settings to database and retrieve them.
 
 ## Version Compatibility
 
-| Laravel Version   | Package Version   | Branch           |
-| ----------------- | ----------------- |------------------|
-| v8                | 4.x               | master           |
-| v7                | 3.x               | version/v3.x     |
+| Laravel Version | Package Version | Branch       |
+|-----------------|-----------------|--------------|
+| v10             | 6.x             | 6.x          |
+| v9              | 5.x             | 5.x          |
+| v8              | 4.x             | 4.x          |
+| v7              | 3.x             | version/v3.x |
+| v6              | 2.x             |              |
+| v5.8            | 1.1.1           |              |
 
 See [change log for change history](CHANGELOG.md) and compatibility with past versions.
 
