@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": "^8.1",
-        "elegantmedia/oxygen-foundation": "^3.0",
-        "emedia/formation": "^2.0",
+        "elegantmedia/oxygen-foundation": "*",
+        "emedia/formation": "*",
         "spatie/laravel-sluggable": "^3.4"
     },
     "autoload": {
