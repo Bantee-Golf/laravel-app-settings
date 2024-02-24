@@ -28,11 +28,11 @@
     "repositories": [
         {
             "type":"vcs",
-            "url":"git@bitbucket.org:elegantmedia/formation.git"
+            "url":"git@github.com:Bantee-Golf/formation.git"
         },
 		{
 			"type":"vcs",
-			"url":"git@bitbucket.org:elegantmedia/lotus.git"
+			"url":"git@github.com:Bantee-Golf/lotus.git"
 		}
     ],
     "config": {
